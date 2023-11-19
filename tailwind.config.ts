@@ -10,10 +10,15 @@ const config: Config = {
     extend: {
      
       colors:{
-        standardBlue:"#0F52BA"
+        standardBlue:"#0F52BA",
+        gray:{
+          500:"#373737",
+          600:"#2C2C2C",
+        }
       },
       boxShadow: {
-        'mk-shadow': '0 -2px 8px 0 rgba(0, 0, 0, 0.3)',
+        'mk-shadow': '0 2px 8px 0 rgba(0,0,0,0.1352)',
+      
       }
     },
   },

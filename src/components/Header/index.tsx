@@ -1,9 +1,10 @@
 "use client";
+import { useCart } from "@/hook/useCart";
 import Image from "next/image";
 import { useState } from "react";
 
 export function Header() {
-  const [count, setCount] = useState(0);
+  const { products } = useCart();
   return (
     <header className="h-[101px] flex items-center justify-center w-full bg-standardBlue">
       <div className="md:max-w-[1440px] sm:max-w-[375px] w-full flex items-center justify-between">
@@ -22,7 +23,7 @@ export function Header() {
             alt="Carrinho de compra"
             src="/assets/cart.svg"
           />
-          <span className="font-bold">{count}</span>
+          <span className="font-bold">{products.length}</span>
         </div>
       </div>
     </header>
