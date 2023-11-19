@@ -1,14 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
 import { useCart } from "../../hook/useCart";
-import React from "react";
+import Image from "next/image";
+import { useState } from "react";
 
 export function Checkout() {
-  const { products, stateCart } = useCart();
+  const { products, stateCart, toggleStateCart, removeProduct } = useCart();
+
+  const [quantidade, setQuantidade] = useState(1);
+
+  const incrementarQuantidade = () => {
+    setQuantidade((prevQuantidade) => prevQuantidade + 1);
+  };
+
+  const decrementarQuantidade = () => {
+    if (quantidade > 1) {
+      setQuantidade((prevQuantidade) => prevQuantidade - 1);
+    }
+  };
 
   return (
     <motion.div
-      className="carrinho absolute h-screen border right-0 max-w-[486px] w-full bg-standardBlue py-[36px] px-[47px]"
+      className="carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue py-[36px] px-[47px] "
       initial={{ x: "100%" }}
       animate={{ x: stateCart ? 0 : "100%" }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -18,14 +31,39 @@ export function Checkout() {
           Carrinho de <br />
           Compra
         </h1>
-        <button>X</button>
+        <button onClick={() => toggleStateCart(false)}>X</button>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-16 flex flex-col gap-4">
         {products.map((res) => {
           return (
-            <div className="bg-white h-[100px]" key={res.id}>
-              {res.name}
+            <div
+              className="grid grid-cols-4 relative items-center bg-white h-[100px] px-[23px] py-[19px] rounded-lg "
+              key={res.id}
+            >
+              <button
+                onClick={() => removeProduct(res.id)}
+                className="absolute flex items-center justify-center border top-[-8px] right-[-8px] rounded-full bg-black w-[18px] h-[18px] text-white text-[14px]"
+              >
+                X
+              </button>
+              <Image
+                src={res.photo}
+                width={46}
+                height={57}
+                alt="Imagem do produto"
+              />
+              <span>{res.name}</span>
+              <div>
+                <div className="flex items-center justify-between px-2 py-1 border w-[50px] rounded font-normal text-sm">
+                  <button onClick={decrementarQuantidade}>-</button>
+                  <p>{quantidade}</p>
+                  <button onClick={incrementarQuantidade}>+</button>
+                </div>
+              </div>
+              <span className="font-bold text-black text-[14px]">
+                R$ {res.price}
+              </span>
             </div>
           );
         })}
