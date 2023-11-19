@@ -63,7 +63,7 @@ export function Checkout() {
               <div>
                 <div className="flex items-center justify-between px-2 py-1 border w-[50px] rounded font-normal text-sm">
                   <button onClick={decrementarQuantidade}>-</button>
-                  <p>{quantidade}</p>
+                  <p>{res.quantity}</p>
                   <button onClick={incrementarQuantidade}>+</button>
                 </div>
               </div>

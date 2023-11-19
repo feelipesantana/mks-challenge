@@ -14,8 +14,29 @@ type MyState = {
 export const useCart = create<MyState>((set) => ({
   products: [],
   stateCart: false,
+
   addProduct: (newProduct) =>
-    set((state) => ({ products: [...state.products, newProduct] })),
+    set((state) => {
+      const hasProduct = state.products.find(
+        (product) => product.id === newProduct.id
+      );
+
+      if (hasProduct) {
+        const updatedProducts = state.products.map((product) =>
+          product.id === newProduct.id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        );
+        return { products: updatedProducts };
+      } else {
+        const productWithQuantity: ProductsProps = {
+          ...newProduct,
+          quantity: 1,
+        };
+
+        return { products: [...state.products, productWithQuantity] };
+      }
+    }),
   toggleStateCart: (value) => set((state) => ({ stateCart: value })),
   removeProduct: (productId) =>
     set((state) => ({

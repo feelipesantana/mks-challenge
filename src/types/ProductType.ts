@@ -7,4 +7,5 @@ export interface ProductsProps {
   price: string;
   createdAt: string;
   updatedAt: string;
+  quantity:  number;
 }
