@@ -1,8 +1,7 @@
 "use client";
 import { useCart } from "@/hook/useCart";
 import Image from "next/image";
-import { useState } from "react";
-
+import React from "react";
 export function Header() {
   const { products, toggleStateCart } = useCart();
   return (
