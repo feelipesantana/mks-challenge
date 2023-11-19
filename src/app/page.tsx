@@ -56,8 +56,6 @@ export default async function Home() {
           </div>
         );
       })}
-
-      <Checkout />
     </div>
   );
 }

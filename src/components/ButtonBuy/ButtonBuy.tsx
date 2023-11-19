@@ -7,11 +7,11 @@ interface ButtonBuyProps {
   productData: ProductsProps;
 }
 export function ButtonBuy({ productData }: ButtonBuyProps) {
-  const { addProduct, products } = useCart();
+  const { addProduct, products, toggleStateCart } = useCart();
 
   function handleBuy() {
     addProduct(productData);
-
+    toggleStateCart(true);
     console.log(products);
   }
   return (

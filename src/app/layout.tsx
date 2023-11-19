@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import { Header } from "@/components/Header";
+import { Checkout } from "@/components/Checkout";
 
 const montSerrant = Montserrat({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montSerrant.className}>
+        <Checkout />
         <Header />
         {children}
       </body>
