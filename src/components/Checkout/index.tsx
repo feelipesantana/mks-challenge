@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useCart } from "../../hook/useCart";
 import Image from "next/image";
-import { useState } from "react";
 
 export function Checkout() {
   const {
@@ -14,16 +13,22 @@ export function Checkout() {
     subtractUpdateProduct,
   } = useCart();
 
+  const total = products.reduce(
+    (accumulator, product) =>
+      accumulator + product.quantity * Number(product.price),
+    0
+  );
+
   return (
     <motion.div
       className={`${
-        !stateCart ? "hidden" : "block"
-      } carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue py-[36px] px-[47px]`}
+        !stateCart ? "hidden" : "flex flex-col"
+      } carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue `}
       initial={{ x: "100%" }}
       animate={{ x: stateCart ? 0 : "100%" }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
     >
-      <div className="flex justify-between items-start">
+      <div className="flex justify-between items-start pt-[36px] px-[47px]">
         <h1 className="text-[27px] font-bold text-white">
           Carrinho de <br />
           Compra
@@ -37,7 +42,7 @@ export function Checkout() {
         </button>
       </div>
 
-      <div className="mt-16 flex flex-col gap-4">
+      <div className="mt-16 flex flex-1 flex-col gap-4 px-[47px] overflow-y-auto">
         {products.map((res) => {
           return (
             <div
@@ -72,6 +77,16 @@ export function Checkout() {
             </div>
           );
         })}
+      </div>
+
+      <div>
+        <div className="flex justify-between mb-10 px-[47px] text-white font-bold text-[28px]">
+          <span>Total:</span>
+          <span>R$ {total},00</span>
+        </div>
+        <button className=" h-[97px] w-full text-[28px] font-bold text-white bg-black">
+          Finalizar Compra
+        </button>
       </div>
     </motion.div>
   );

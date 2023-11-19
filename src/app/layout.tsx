@@ -19,11 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={montSerrant.className}>
+      <body className={`${montSerrant.className} h-screen flex flex-col`}>
         <Checkout />
-        <Header />
 
-        {children}
+        <Header />
+        <div className="flex-1">{children}</div>
+
+        <footer className="h-10 flex items-center justify-center bg-gray-100 text-black">
+          MKS Sistemas © Todos os direitos reservados
+        </footer>
       </body>
     </html>
   );

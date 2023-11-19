@@ -12,6 +12,7 @@ const config: Config = {
       colors:{
         standardBlue:"#0F52BA",
         gray:{
+          100:"#EEEEEE",
           500:"#373737",
           600:"#2C2C2C",
         }

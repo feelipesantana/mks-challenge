@@ -12,7 +12,6 @@ export function ButtonBuy({ productData }: ButtonBuyProps) {
   function handleBuy() {
     addProduct(productData);
     toggleStateCart(true);
-    console.log(products);
   }
   return (
     <button
