@@ -9,22 +9,22 @@ interface DataProps {
   products: Array<ProductsProps>;
   count: number;
 }
+
+export async function fetchProducts() {
+  const res = await fetch(
+    "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=12&sortBy=id&orderBy=DESC"
+  );
+  if (!res.ok) {
+    throw new Error("Falha ao realizar o fetch de dados");
+  }
+
+  return res.json() as Promise<{ products: ProductsProps[]; count: number }>;
+}
 export function GetProducts() {
   const { isLoading, isError, data, error } = useQuery<DataProps>(
     "products",
     fetchProducts
   );
-
-  async function fetchProducts() {
-    const res = await fetch(
-      "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=12&sortBy=id&orderBy=DESC"
-    );
-    if (!res.ok) {
-      throw new Error("Falha ao realizar o fetch de dados");
-    }
-
-    return res.json();
-  }
 
   if (isLoading) {
     return (

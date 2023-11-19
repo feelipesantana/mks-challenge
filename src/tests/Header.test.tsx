@@ -2,7 +2,7 @@
 import React from "react";
 
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Header } from "@/components/Header"; // Mock da função toggleStateCart
+import { Header } from "@/components/Header";
 import * as useCartModule from "@/hook/useCart";
 
 jest.mock("../hook/useCart.tsx");
