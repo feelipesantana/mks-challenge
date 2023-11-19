@@ -31,7 +31,13 @@ export function Checkout() {
           Carrinho de <br />
           Compra
         </h1>
-        <button onClick={() => toggleStateCart(false)}>X</button>
+        <button
+          onClick={() => toggleStateCart(false)}
+          className="bg-black text-white w-[38px] h-[38px] rounded-full"
+        >
+          {" "}
+          X
+        </button>
       </div>
 
       <div className="mt-16 flex flex-col gap-4">
