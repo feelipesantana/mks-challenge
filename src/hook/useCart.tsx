@@ -9,6 +9,8 @@ type MyState = {
   toggleStateCart: (value: boolean) => void;
   addProduct: (newProduct: ProductsProps) => void;
   removeProduct: (productId: string) => void;
+  addUpdateProduct: (productId: string) => void;
+  subtractUpdateProduct: (productId: string) => void;
 };
 
 export const useCart = create<MyState>((set) => ({
@@ -42,4 +44,23 @@ export const useCart = create<MyState>((set) => ({
     set((state) => ({
       products: state.products.filter((product) => product.id !== productId),
     })),
+
+  addUpdateProduct: (productId) =>
+    set((state) => {
+      const updatedProduct = state.products.map((product) =>
+        product.id === productId && product.quantity <= 100
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      );
+      return { products: updatedProduct };
+    }),
+  subtractUpdateProduct: (productId) =>
+    set((state) => {
+      const updatedProduct = state.products.map((product) =>
+        product.id === productId && product.quantity > 1
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      );
+      return { products: updatedProduct };
+    }),
 }));

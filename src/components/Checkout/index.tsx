@@ -5,19 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 
 export function Checkout() {
-  const { products, stateCart, toggleStateCart, removeProduct } = useCart();
-
-  const [quantidade, setQuantidade] = useState(1);
-
-  const incrementarQuantidade = () => {
-    setQuantidade((prevQuantidade) => prevQuantidade + 1);
-  };
-
-  const decrementarQuantidade = () => {
-    if (quantidade > 1) {
-      setQuantidade((prevQuantidade) => prevQuantidade - 1);
-    }
-  };
+  const {
+    products,
+    stateCart,
+    toggleStateCart,
+    removeProduct,
+    addUpdateProduct,
+    subtractUpdateProduct,
+  } = useCart();
 
   return (
     <motion.div
@@ -62,9 +57,11 @@ export function Checkout() {
               <span>{res.name}</span>
               <div>
                 <div className="flex items-center justify-between px-2 py-1 border w-[50px] rounded font-normal text-sm">
-                  <button onClick={decrementarQuantidade}>-</button>
+                  <button onClick={() => subtractUpdateProduct(res.id)}>
+                    -
+                  </button>
                   <p>{res.quantity}</p>
-                  <button onClick={incrementarQuantidade}>+</button>
+                  <button onClick={() => addUpdateProduct(res.id)}>+</button>
                 </div>
               </div>
               <span className="font-bold text-black text-[14px]">
