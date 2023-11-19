@@ -1,6 +1,6 @@
 "use client";
 import { create } from "zustand";
-import { ProductsProps } from "../types/ProductType";
+import { ProductsProps } from "@/types/ProductType";
 
 type MyState = {
   stateCart: boolean;
