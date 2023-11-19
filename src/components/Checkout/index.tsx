@@ -16,7 +16,9 @@ export function Checkout() {
 
   return (
     <motion.div
-      className="carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue py-[36px] px-[47px] "
+      className={`${
+        !stateCart ? "hidden" : "block"
+      } carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue py-[36px] px-[47px]`}
       initial={{ x: "100%" }}
       animate={{ x: stateCart ? 0 : "100%" }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
