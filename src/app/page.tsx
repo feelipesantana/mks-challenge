@@ -1,10 +1,6 @@
 "use client";
-import { ButtonBuy } from "@/components/ButtonBuy/ButtonBuy";
-import { Checkout } from "@/components/Checkout";
 import { GetProducts } from "@/components/GetProducts";
-import { ProductsProps } from "@/types/ProductType";
-import Image from "next/image";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function Home() {
   const queryClient = new QueryClient();

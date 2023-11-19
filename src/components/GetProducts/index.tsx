@@ -2,6 +2,8 @@ import { ProductsProps } from "@/types/ProductType";
 import Image from "next/image";
 import { useQuery } from "react-query";
 import { ButtonBuy } from "../ButtonBuy/ButtonBuy";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface DataProps {
   products: Array<ProductsProps>;
@@ -18,9 +20,35 @@ export function GetProducts() {
       "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=12&sortBy=id&orderBy=DESC"
     );
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error("Falha ao realizar o fetch de dados");
     }
+
     return res.json();
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        {[...Array(8)].map((_, index) => (
+          <div
+            key={index}
+            className="flex flex-col justify-between w-full md:min-h-[285px] md:max-w-[218px] shadow-mk-shadow rounded-xl"
+          >
+            <div className="max-w-[171px] max-h-[138px] mx-auto mt-[18px]">
+              <Skeleton height={138} width={171} />
+            </div>
+            <div className="flex flex-col px-[14px] mt-[14px]">
+              <div className="flex items-center justify-between">
+                <Skeleton height={20} width={120} />
+                <Skeleton height={20} width={60} />
+              </div>
+              <Skeleton count={2} height={15} />
+            </div>
+            <Skeleton height={40} style={{ margin: "10px auto" }} width={120} />
+          </div>
+        ))}
+      </>
+    );
   }
   return (
     <>
