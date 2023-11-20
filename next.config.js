@@ -10,9 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1", // Definição do alias
-  },
 };
 
 module.exports = nextConfig;

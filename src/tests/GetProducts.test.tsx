@@ -22,4 +22,17 @@ describe("GetProducts", () => {
     expect(data.products).toEqual(mockProducts);
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
+
+  test("handles fetch error", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      statusText: "Internal Server Error",
+    });
+
+    await expect(fetchProducts()).rejects.toThrow(
+      "Falha ao realizar o fetch de dados"
+    );
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
 });
