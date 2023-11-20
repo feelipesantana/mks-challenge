@@ -23,7 +23,7 @@ export function Checkout() {
     <motion.div
       className={`${
         !stateCart ? "hidden" : "flex flex-col"
-      } carrinho absolute h-screen right-0 max-w-[486px] w-full bg-standardBlue `}
+      } carrinho fixed w-full lg:h-screen h-full  right-0 max-w-[90%] lg:max-w-[486px] bg-standardBlue  overflow-y-auto z-50`}
       initial={{ x: "100%" }}
       animate={{ x: stateCart ? 0 : "100%" }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -46,41 +46,45 @@ export function Checkout() {
         {products.map((res) => {
           return (
             <div
-              className="grid grid-cols-4 relative items-center bg-white h-[100px] px-[23px] py-[19px] rounded-lg "
+              className="flex flex-col justify-between items-center lg:grid lg:grid-cols-4 relative lg:w-full bg-white w-[250px] px-[10px] py-[19px] rounded-lg  border mt-2 gap-4"
               key={res.id}
             >
               <button
                 onClick={() => removeProduct(res.id)}
-                className="absolute flex items-center justify-center border top-[-8px] right-[-8px] rounded-full bg-black w-[18px] h-[18px] text-white text-[14px]"
+                className="absolute flex items-center justify-center text-black top-4 right-4 text-[42px] rounded-full lg:bg-black w-[18px] h-[18px]  lg:border lg:top-[-8px] lg:right-[-8px] lg:text-white lg:text-[14px]"
               >
                 X
               </button>
-              <Image
-                src={res.photo}
-                width={46}
-                height={57}
-                alt="Imagem do produto"
-              />
-              <span>{res.name}</span>
               <div>
-                <div className="flex items-center justify-between px-2 py-1 border w-[50px] rounded font-normal text-sm">
+                <Image
+                  src={res.photo}
+                  width={80}
+                  height={90}
+                  alt="Imagem do produto"
+                  className=" w-full"
+                />
+              </div>
+              <span className=" text-base my-[10px]">{res.name}</span>
+              <div className="flex flex-row  justify-between w-full items-center ">
+                <div className="flex items-center justify-between gap-2 px-2 py-1 border w-[80px] text-xl lg:w-[50px] rounded font-normal lg:text-sm">
                   <button onClick={() => subtractUpdateProduct(res.id)}>
                     -
                   </button>
-                  <p>{res.quantity}</p>
+                  <p className="">{res.quantity}</p>
                   <button onClick={() => addUpdateProduct(res.id)}>+</button>
                 </div>
+
+                <div className=" flex-inline whitespace-nowrap font-bold text-white text-[15px] bg-gray-500 p-2  lg:bg-white lg:text-black rounded-[5px]">
+                  R$ {res.price}
+                </div>
               </div>
-              <span className="font-bold text-black text-[14px]">
-                R$ {res.price}
-              </span>
             </div>
           );
         })}
       </div>
 
       <div>
-        <div className="flex justify-between mb-10 px-[47px] text-white font-bold text-[28px]">
+        <div className="flex justify-between mb-10 lg:px-[47px] px-[32px] text-white font-bold text-[28px]">
           <span>Total:</span>
           <span>R$ {total},00</span>
         </div>
