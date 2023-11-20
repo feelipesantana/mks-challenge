@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="mx-auto mt-[116px] grid grid-cols-4 gap-6 max-w-[980px]">
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-[980px]">
         <GetProducts />
       </div>
     </QueryClientProvider>

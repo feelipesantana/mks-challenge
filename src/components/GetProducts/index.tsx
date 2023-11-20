@@ -56,9 +56,9 @@ export function GetProducts() {
         return (
           <div
             key={res.id}
-            className="flex flex-col justify-between w-full md:min-h-[285px] md:max-w-[218px] shadow-mk-shadow rounded-xl"
+            className="mx-auto flex flex-col justify-between w-[250px] md:min-h-[285px] md:max-w-[218px] shadow-mk-shadow rounded-xl"
           >
-            <div className="max-w-[171px]  max-h-[138px] mx-auto mt-[18px]">
+            <div className="min-w-[130px] min-h-[160px] md:max-w-[171px]  md:max-h-[138px] mx-auto mt-[18px]">
               <Image
                 src={res.photo}
                 width={0}
