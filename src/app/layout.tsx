@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
+
 import { Header } from "@/components/Header";
 import { Checkout } from "@/components/Checkout";
 
